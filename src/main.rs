@@ -21,6 +21,7 @@
     single_use_lifetimes,
     unused_extern_crates
 )]
+#![allow(clippy::multiple_crate_versions)] // This should be enforced by `/tests/crate_deps.rs`
 
 use {
     itertools::Itertools,
