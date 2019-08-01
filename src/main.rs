@@ -34,7 +34,10 @@ struct Cli {
     ignore_environment: bool,
     #[structopt(help = "", parse(try_from_str = "Self::parse_variable"))]
     variables: Vec<(String, String)>,
-    #[structopt(help = "the command to run and optionally its arguments", raw(raw = "true"))]
+    #[structopt(
+        help = "the command to run and optionally its arguments",
+        raw(raw = "true")
+    )]
     command_and_args: Vec<String>,
 }
 
