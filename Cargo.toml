@@ -17,6 +17,5 @@ maintenance = { status = "experimental" }
 travis-ci = { repository = "erichdongubler/envr" }
 
 [dependencies]
-human-panic = "1.0.1"
-structopt = "0.2.18"
 itertools = "0.8.0"
+structopt = "0.2.18"
