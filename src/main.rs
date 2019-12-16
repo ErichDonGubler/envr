@@ -36,7 +36,7 @@ struct Cli {
     variables: Vec<(String, String)>,
     #[structopt(
         help = "the command to run and optionally its arguments",
-        raw(raw = "true")
+        raw(true),
     )]
     command_and_args: Vec<String>,
 }
