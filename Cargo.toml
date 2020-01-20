@@ -18,4 +18,4 @@ travis-ci = { repository = "erichdongubler/envr" }
 
 [dependencies]
 itertools = "0.8.2"
-structopt = "0.3.7"
+structopt = "0.3.8"
