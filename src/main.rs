@@ -28,10 +28,11 @@ use {
 };
 
 #[derive(Debug, StructOpt)]
+#[structopt(about, author)]
 struct Cli {
     #[structopt(short, long, help = "start with an empty environment")]
     ignore_environment: bool,
-    #[structopt(help = "", parse(try_from_str = "Self::parse_variable"))]
+    #[structopt(help = "", parse(try_from_str = Self::parse_variable))]
     variables: Vec<(String, String)>,
     #[structopt(
         help = "the command to run and optionally its arguments",
