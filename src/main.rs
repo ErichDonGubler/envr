@@ -23,7 +23,6 @@
 )]
 
 use {
-    itertools::Itertools,
     std::process::{exit, Command},
     structopt::StructOpt,
 };
