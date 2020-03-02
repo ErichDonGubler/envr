@@ -30,23 +30,25 @@ use {
 #[derive(Debug, StructOpt)]
 #[structopt(about, author)]
 struct Cli {
-    #[structopt(short, long, help = "start with an empty environment")]
+    /// Run `command_and_args` with no environmental variables set.
+    #[structopt(short, long)]
     ignore_environment: bool,
-    #[structopt(help = "", parse(try_from_str = Self::parse_variable))]
+    #[structopt(parse(try_from_str = Self::parse_variable))]
     variables: Vec<(String, String)>,
-    #[structopt(
-        help = "the command to run and optionally its arguments",
-        raw(true),
-    )]
+    /// The command to run and its arguments, if any.
+    #[structopt(raw(true))]
     command_and_args: Vec<String>,
 }
 
 impl Cli {
     fn parse_variable(s: &str) -> Result<(String, String), String> {
-        s.split('=')
-            .map(ToOwned::to_owned)
-            .collect_tuple()
-            .ok_or_else(|| format!("{:?} is not a valid key-value pair", s))
+        let mut split_iter = s.splitn(2, '=');
+        let key = split_iter.next().unwrap();
+        split_iter.next()
+            .ok_or_else(|| format!("{:?} is not a equals-sign-separated key-value pair", s))
+            .map(|value| {
+                (key.to_owned(), value.to_owned())
+            })
     }
 }
 
@@ -83,4 +85,12 @@ pub fn main() {
         eprintln!("fatal: unable to wait for command to complete: {}", e);
         exit(103);
     }
+}
+
+#[test]
+fn variable_parsing() {
+    assert_eq!(
+        Cli::parse_variable("RUST_LOG=module=trace"),
+        Ok(("RUST_LOG".to_owned(), "module=trace".to_owned())),
+    );
 }
