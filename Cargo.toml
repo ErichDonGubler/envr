@@ -17,4 +17,4 @@ maintenance = { status = "experimental" }
 travis-ci = { repository = "erichdongubler/envr" }
 
 [dependencies]
-structopt = "0.3.11"
+structopt = "0.3.12"
