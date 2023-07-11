@@ -47,11 +47,10 @@ impl Cli {
     fn parse_variable(s: &str) -> Result<(String, String), String> {
         let mut split_iter = s.splitn(2, '=');
         let key = split_iter.next().unwrap();
-        split_iter.next()
+        split_iter
+            .next()
             .ok_or_else(|| format!("{:?} is not a equals-sign-separated key-value pair", s))
-            .map(|value| {
-                (key.to_owned(), value.to_owned())
-            })
+            .map(|value| (key.to_owned(), value.to_owned()))
     }
 }
 
