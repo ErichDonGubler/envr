@@ -23,23 +23,23 @@
 )]
 
 use {
+    clap::Parser,
     std::{
         ffi::OsString,
         process::{exit, Command},
     },
-    structopt::StructOpt,
 };
 
-#[derive(Debug, StructOpt)]
-#[structopt(about, author)]
+#[derive(Debug, Parser)]
+#[clap(about, author)]
 struct Cli {
-    /// Run `command_and_args` with no environmental variables set.
-    #[structopt(short, long)]
+    /// Do not inherit environment variables from the parent process.
+    #[clap(short, long)]
     ignore_environment: bool,
-    #[structopt(parse(try_from_str = Self::parse_variable))]
+    #[clap(value_parser = Self::parse_variable)]
     variables: Vec<(String, String)>,
     /// The command to run and its arguments, if any.
-    #[structopt(raw(true))]
+    #[clap(raw(true))]
     command_and_args: Vec<OsString>,
 }
 
@@ -60,7 +60,7 @@ pub fn main() {
         ignore_environment,
         variables,
         mut command_and_args,
-    } = Cli::from_args();
+    } = Cli::parse();
 
     if command_and_args.is_empty() {
         eprintln!("fatal: command not specified");
