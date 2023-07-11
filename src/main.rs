@@ -23,7 +23,10 @@
 )]
 
 use {
-    std::process::{exit, Command},
+    std::{
+        ffi::OsString,
+        process::{exit, Command},
+    },
     structopt::StructOpt,
 };
 
@@ -37,7 +40,7 @@ struct Cli {
     variables: Vec<(String, String)>,
     /// The command to run and its arguments, if any.
     #[structopt(raw(true))]
-    command_and_args: Vec<String>,
+    command_and_args: Vec<OsString>,
 }
 
 impl Cli {
