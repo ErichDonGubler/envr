@@ -78,14 +78,14 @@ pub fn main() {
         Ok(c) => c,
         Err(e) => {
             eprintln!("fatal: command {:?} failed to spawn: {}", command, e);
-            exit(102);
+            exit(102); // TODO: document error codes
         }
     };
 
     let _keep_child_stdin_intact = child.stdin.take();
     if let Err(e) = child.wait() {
         eprintln!("fatal: unable to wait for command to complete: {}", e);
-        exit(103);
+        exit(103); // TODO: document error codes
     }
 }
 
