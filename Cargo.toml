@@ -29,4 +29,4 @@ maintenance = { status = "experimental" }
 travis-ci = { repository = "erichdongubler/envr" }
 
 [dependencies]
-clap = { version = "4.4.0", features = ["derive"] }
+clap = { version = "4.4.8", features = ["derive"] }
