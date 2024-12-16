@@ -12,15 +12,15 @@ license = "MPL-2.0"
 
 [package.metadata.binstall]
 
+[package.metadata.wix]
+upgrade-guid = "AEE967BD-6710-44E8-9B31-E67F17964010"
+path-guid = "6B9CCF5D-8A39-4936-A890-3BAB932A2B16"
+license = false
+eula = false
+
 [profile.dist]
 inherits = "release"
 lto = "thin"
-
-[workspace.metadata.dist]
-cargo-dist-version = "0.1.0"
-ci = ["github"]
-installers = ["shell", "powershell"]
-targets = ["x86_64-unknown-linux-gnu", "x86_64-apple-darwin", "x86_64-pc-windows-msvc", "aarch64-apple-darwin"]
 
 [badges]
 is-it-maintained-issue-resolution = { repository = "https://github.com/erichdongubler/envr" }
